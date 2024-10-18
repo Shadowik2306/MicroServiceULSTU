@@ -2,9 +2,9 @@ from typing import List
 
 from sqlalchemy import select, update, delete
 
-from app.data.database import async_session_maker
-from app.data.model import BeautyWorkerModel
-from app.data.schemas import SWorkerAdd, SWorkerUpdate
+from data.database import async_session_maker
+from data.model import BeautyWorkerModel
+from data.schemas import SWorkerAdd, SWorkerUpdate
 
 
 class WorkerRepository:

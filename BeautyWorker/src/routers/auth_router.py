@@ -6,14 +6,14 @@ from data.repository import WorkerRepository
 from data.schemas import SWorkerAdd, SWorkerUpdate
 
 router = APIRouter(
-    prefix="/api/BeautyWorker",
+    prefix="",
     tags=["BeautyWorker"],
 )
 
 
 @router.post("/worker", description="# Регистрация нового работника")
 async def sign_up(
-        user: Annotated[SWorkerAdd, Depends()]
+        user: SWorkerAdd
 ):
     res = await WorkerRepository.add_one(user)
     return res
@@ -35,7 +35,7 @@ async def get_worker(
 
 @router.put("/worker", description="# Обновление данных рабочего")
 async def update_worker(
-        user: Annotated[SWorkerUpdate, Depends()]
+        user: SWorkerUpdate
 ):
     await WorkerRepository.update_by_id(user)
     return {"Status": "Updated"}

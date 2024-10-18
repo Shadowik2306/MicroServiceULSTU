@@ -1,6 +1,3 @@
-# from pydantic import BaseModel
-from typing import Annotated
-
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 
 

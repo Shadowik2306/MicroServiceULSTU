@@ -1,27 +1,43 @@
 services:
+  api-gateway:
+    build: ./ApiGateway
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./ApiGateway:/app
+    working_dir:
+      /app/src
+    ports:
+      - 8000:8000
+    depends_on:
+      - web
+      - web-report
+
   web:
     build: ./BeautyWorker
-    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8001
     volumes:
-       - ./BeautyWorker:/usr/src/app
-    ports:
-      - 8004:8000
+       - ./BeautyWorker:/app
+    working_dir:
+      /app/src
     environment:
       - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/beautyshop
     depends_on:
       - db
 
+
+
   web-report:
     build: ./BeautyWorkerReport
-    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8002
     volumes:
-      - ./BeautyWorkerReport:/usr/src/app
-    ports:
-      - 8005:8000
+      - ./BeautyWorkerReport:/app
+    working_dir:
+      /app/src
     environment:
       - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/beautyshop
     depends_on:
       - db
+
 
   db:
     image: postgres:latest
@@ -31,4 +47,9 @@ services:
       - 5432:5432
     env_file:
       - ".env"
+    volumes:
+      - db_data:/var/lib/postgresql/data
 
+
+volumes:
+  db_data:
