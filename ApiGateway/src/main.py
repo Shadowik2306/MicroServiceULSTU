@@ -28,10 +28,7 @@ async def gateway(service: str, path: str, request: Request):
     headers = dict(request.headers)
     params = dict(request.query_params)
 
-    print(headers)
-    print(body)
     response = await forward_request(service_url, request.method, f"/{path}", body, headers, params)
-    print("Success")
     return JSONResponse(status_code=response.status_code, content=response.json())
 
 @app.get("/")

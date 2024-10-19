@@ -2,8 +2,10 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/BeautyWorker/app" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ApiGateway/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeautyWorker/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeautyWorkerReport/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/BeautyWorker/.venv" />
     </content>

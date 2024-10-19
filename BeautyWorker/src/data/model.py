@@ -14,6 +14,8 @@ class BeautyWorkerModel(CustomModel):
     id: Mapped[int] = mapped_column(primary_key=True)
     username: Mapped[str]
     email: Mapped[str]
+    status: Mapped[str] = mapped_column(insert_default="Applied", nullable=False)
+
 
 
 

@@ -8,6 +8,6 @@ router = APIRouter(
 
 @router.get('/workers')
 async def get_workers():
-    workers = await WorkerRepository.get_all()
+    workers = await WorkerRepository().get_report_fired()
     return workers
 

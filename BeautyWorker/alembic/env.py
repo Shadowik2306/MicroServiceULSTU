@@ -4,8 +4,8 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-from app.config import db_settings
-from app.data.model import CustomModel
+from src.config import db_settings
+from src.data.model import CustomModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

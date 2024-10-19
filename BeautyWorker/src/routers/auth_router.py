@@ -45,6 +45,6 @@ async def update_worker(
 async def delete_worker(
         id: int
 ):
-    await WorkerRepository.delete_by_id(id)
-    return {"Status": "Deleted"}
+    await WorkerRepository.fire_by_id(id)
+    return {"Status": "Fired"}
 

@@ -12,6 +12,8 @@ class BeautyWorkerModel(CustomModel):
     username: Mapped[str]
     email: Mapped[str]
 
+    status: Mapped[str]
+
 
 
 
