@@ -11,6 +11,8 @@ services:
     depends_on:
       - web
       - web-report
+    networks:
+      - gateway
 
   web:
     build: ./BeautyWorker
@@ -23,6 +25,11 @@ services:
       - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/beautyshop
     depends_on:
       - db
+    networks:
+      - gateway
+      - first_to_sec
+      - db
+
 
 
 
@@ -37,6 +44,9 @@ services:
       - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/beautyshop
     depends_on:
       - db
+    networks:
+      - first_to_sec
+      - db
 
 
   db:
@@ -49,6 +59,16 @@ services:
       - ".env"
     volumes:
       - db_data:/var/lib/postgresql/data
+    networks:
+      - db
+
+networks:
+  gateway:
+    driver: bridge
+  first_to_sec:
+    driver: bridge
+  db:
+    driver: bridge
 
 
 volumes:

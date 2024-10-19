@@ -1,6 +1,7 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Form, HTTPException, status
+import httpx
+from fastapi import APIRouter, Request
 
 from data.repository import WorkerRepository
 from data.schemas import SWorkerAdd, SWorkerUpdate
@@ -47,4 +48,16 @@ async def delete_worker(
 ):
     await WorkerRepository.fire_by_id(id)
     return {"Status": "Fired"}
+
+
+@router.get("/get_report")
+async def get_report(
+        request: Request,
+):
+    async with httpx.AsyncClient() as client:
+        url = f"http://web-report:8002/workers"
+        response = await client.get(url)
+
+        return response.json()
+
 
